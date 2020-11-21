@@ -9,11 +9,10 @@ import { useStateValue } from "./StateProvider";
 import "./Header.css";
 
 function Header() {
-
   //const [{basket,user}, dispatch] = useStateValue();
 
   //const [state, dispatch] = useStateValue();initially
-  const [{basket}, dispatch] = useStateValue();
+  const [{ basket }, dispatch] = useStateValue();
 
   return (
     <div className="header">
@@ -28,10 +27,12 @@ function Header() {
         <SearchIcon className="header__searchIcon" />
       </div>
       <div className="header__nav">
-        <div className="header__option">
-          <span className="header__optionLineOne"> Hello Guest</span>
-          <span className="header__optionLineTwo"> Sign in</span>
-        </div>
+        <Link to="/login">
+          <div className="header__option">
+            <span className="header__optionLineOne"> Hello Guest</span>
+            <span className="header__optionLineTwo"> Sign in</span>
+          </div>
+        </Link>
 
         <div className="header__option">
           <span className="header__optionLineOne"> Returns</span>
@@ -46,8 +47,7 @@ function Header() {
         <Link to="/checkout">
           <div className="header__optionBasket"></div>
           <ShoppingBasketIcon className="basketIcon" />
-          <span 
-            className="header__optionLineTwo header_basketCount">
+          <span className="header__optionLineTwo header_basketCount">
             {basket.length}
           </span>
         </Link>
@@ -57,5 +57,5 @@ function Header() {
 }
 
 export default Header;
-//basket.length can be replaced by basket?.length so in case basket is undefined 
+//basket.length can be replaced by basket?.length so in case basket is undefined
 //we gracefully handle the error
