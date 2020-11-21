@@ -1,11 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-import "./Header.css";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 
+import { Link } from "react-router-dom";
+import { useStateValue } from "./StateProvider";
+
+import "./Header.css";
+
 function Header() {
+
+  //const [{basket,user}, dispatch] = useStateValue();
+
+  //const [state, dispatch] = useStateValue();initially
+  const [{basket}, dispatch] = useStateValue();
+
   return (
     <div className="header">
       <Link to="/">
@@ -37,7 +46,10 @@ function Header() {
         <Link to="/checkout">
           <div className="header__optionBasket"></div>
           <ShoppingBasketIcon className="basketIcon" />
-          <span className="header__optionLineTwo header_basketCount">0</span>
+          <span 
+            className="header__optionLineTwo header_basketCount">
+            {basket.length}
+          </span>
         </Link>
       </div>
     </div>
@@ -45,3 +57,5 @@ function Header() {
 }
 
 export default Header;
+//basket.length can be replaced by basket?.length so in case basket is undefined 
+//we gracefully handle the error
