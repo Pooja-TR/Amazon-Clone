@@ -20,6 +20,8 @@ function Header() {
       auth.signOut();
     }
   };
+  // let userName = (user?.email).split('@'); //for saying hello user
+
   return (
     <div className="header">
       <Link to="/">
@@ -36,7 +38,7 @@ function Header() {
         <Link to={!user && "/login"}>
           {/*if no user then push to login page  */}
           <div onClick={handleAuthentication} className="header__option">
-            <span className="header__optionLineOne"> Hello Guest</span>
+            <span className="header__optionLineOne"> Hello {user?.email}</span>
             <span className="header__optionLineTwo">
               {user ? "Sign Out" : "Sign in"}
             </span>
